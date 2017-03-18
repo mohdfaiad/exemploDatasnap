@@ -58,6 +58,8 @@ object frmPrincipal: TfrmPrincipal
     Width = 624
     Height = 193
     Hint = 'Clique no Titulo da Coluna para Ordenar'
+    Align = alCustom
+    Anchors = [akLeft, akTop, akRight]
     BorderStyle = bsNone
     DataSource = dsAluno
     FixedColor = 16762447
@@ -91,6 +93,8 @@ object frmPrincipal: TfrmPrincipal
     Width = 240
     Height = 25
     DataSource = dsAluno
+    Align = alCustom
+    Anchors = [akTop, akRight]
     TabOrder = 4
   end
   object Memo1: TMemo
@@ -98,7 +102,55 @@ object frmPrincipal: TfrmPrincipal
     Top = 312
     Width = 624
     Height = 121
+    Align = alCustom
+    Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
+      '=========================== SERVIDOR ==========================='
+      
+        'novo> other > DATASnapServer > marcar Form Application >  marcar' +
+        ' vclAplication '
+      
+        '> marcar autentication (nos 2 lugares) e marcar mobile connectio' +
+        'rs > Escolher porta '
+      
+        '> marcar TDSServerMmodule > Escolher pasta para onde salvar apli' +
+        'ca'#231#227'o.'
+      ''
+      ''
+      
+        'O delphi deve criar  um FORM, um serverMethosUnit e um serverCon' +
+        'tainerUnit.'
+      'Form = form Principal;'
+      
+        'serverMethosUnit = local dos componentes de conex'#227'o a dados e me' +
+        'thodos.'
+      
+        'serverContainerUnit = far'#225' a comunica'#231#227'o da nossa maquina com as' +
+        ' outras maquinas. '
+      ''
+      ''
+      'OBS:'
+      '* no serverContainerUnit; '
+      '-DSTCPServerTransport1 = configurar porta(port);'
+      
+        '-DSAutenticationManager1 = Se vc quiser validar, derer'#225' ir em EV' +
+        'ENTS> OnUserAutenticaion e fazer a regra de autentica'#231#227'o nesse e' +
+        'vento.'
+      ''
+      ''
+      'CONFIGURA'#199#213'ES '
+      '*ServerMethodsUnit1: '
+      
+        '-Colocar um FDGuixwaitCursor e um FDPHPMySQLDriverLink (apenas c' +
+        'olocar para n'#227'o da erro);'
+      
+        '-Colocar um FDConnection (configura-lo; desmarcar a op'#231#227'o loginP' +
+        'rompt) e um TFDQuery (Ligar com fdConnection e colocar o SQL);'
+      '-Colocar um TdataSetProvider e linkar com a TFDQuery criada;'
+      '... Com essas configura'#231#245'es vc libera uma tabela para consulta.'
+      ''
+      ''
+      '=========================== CLIENTE ==========================='
       'Sobre a conex'#227'o base:'
       ''
       'SQLCOnnection1: *Driver = DATASNAP;'
@@ -131,7 +183,8 @@ object frmPrincipal: TfrmPrincipal
         'tion1 e click em "Genereta Datasnap client clases", ent'#227'o uma un' +
         'it se abrir'#225', salve-a. ela '#233' respons'#225'vel por chamar os metodos c' +
         'riados no servidor.'
-      '*exemplo para se chamar um metodo do servidor no buttom1')
+      '*exemplo para se chamar um metodo do servidor no buttom1'
+      'https://www.youtube.com/watch?v=MWu1VZPoBUM&t=1s')
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 5
