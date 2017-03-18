@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ExtCtrls, Vcl.DBCtrls,
   Vcl.Grids, Vcl.DBGrids, DBGridBeleza, Vcl.StdCtrls, Data.DBXDataSnap,
   IPPeerClient, Data.DBXCommon, Datasnap.DBClient, Datasnap.DSConnect,
-  Data.SqlExpr, MIDASLIB;
+  Data.SqlExpr, MIDASLIB, System.JSON, Data.DBXJSONCommon;
 
 type
   TfrmPrincipal = class(TForm)
@@ -24,6 +24,39 @@ type
     cdsAluno: TClientDataSet;
     Memo1: TMemo;
     Button1: TButton;
+    Image1: TImage;
+    cdsAlunoidAluno: TIntegerField;
+    cdsAlunonomeAluno: TStringField;
+    cdsAlunoidade: TIntegerField;
+    cdsAlunodataNascimento: TDateField;
+    cdsAlunoemail: TStringField;
+    cdsAlunosexo: TStringField;
+    cdsAlunocidade: TStringField;
+    cdsAlunobairro: TStringField;
+    cdsAlunorua: TStringField;
+    cdsAlunonumero: TIntegerField;
+    cdsAlunocep: TIntegerField;
+    cdsAlunotel1: TStringField;
+    cdsAlunotel2: TStringField;
+    cdsAlunonomeResponsavel: TStringField;
+    cdsAlunoparentescoResponsavel: TStringField;
+    cdsAlunotelResponsavel: TStringField;
+    cdsAlunopeso: TSingleField;
+    cdsAlunoaltura: TSingleField;
+    cdsAlunofrequenciaAtividadeFisica: TIntegerField;
+    cdsAlunoqtdRefeicoesDia: TIntegerField;
+    cdsAlunoqtdHorasSono: TIntegerField;
+    cdsAlunosuplementacao: TBooleanField;
+    cdsAlunodieta: TBooleanField;
+    cdsAlunofumante: TBooleanField;
+    cdsAlunoconsomeBebidaAlcoolica: TBooleanField;
+    cdsAlunodataCadastro: TDateField;
+    cdsAlunoativo: TBooleanField;
+    cdsAlunocpf: TStringField;
+    cdsAlunoinformacaoAdicional: TStringField;
+    cdsAlunoidObjetivo: TIntegerField;
+    cdsAlunodataComposicaoFicha: TDateField;
+    cdsAlunoidInstrutorFicha: TIntegerField;
     procedure btnConectarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
@@ -39,7 +72,7 @@ implementation
 
 {$R *.dfm}
 
-uses UMetodosDoServidor;
+uses UMetodosDoServidor, IWSystem ;
 
 procedure TfrmPrincipal.btnConectarClick(Sender: TObject);
 begin
@@ -91,10 +124,44 @@ end;
 procedure TfrmPrincipal.Button1Click(Sender: TObject);
 var
 ser: TServerMethods1Client;
+cdsteste: TDataSet;
+arquivoJson: TJSONArray;
+fotoStream : TStream;
 begin
   //
-  ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
-  showmessage(ser.FuncaoTeste);
+  memo1.Lines.Text := (ExtractFileDir(GetCurrentDir));
+  memo1.Lines.Text :=(gsAppPath);
+
+  {
+  if SQLConnection1.Connected then
+  begin
+      ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+      showmessage(ser.FuncaoTeste);
+      cdsteste := ser.getAlunos;
+
+      while not(cdsteste.Eof ) do
+      begin
+          ShowMessage(cdsteste.FieldByName('nomealuno').AsString);
+          cdsteste.Next;
+      end;
+  end;
+  }
+
+  // Assimila foto do servidor
+  if SQLConnection1.Connected then
+  begin
+      ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+      fotoStream := ser.getFotoAluno(cdsAlunoidAluno.AsInteger);
+      if not(fotoStream = nil)then
+      begin
+        Image1.Picture.Bitmap.LoadFromStream(fotoStream);
+      end else
+      begin
+        Image1.Picture := nil;
+      end;
+
+  end;
+
 end;
 
 end.

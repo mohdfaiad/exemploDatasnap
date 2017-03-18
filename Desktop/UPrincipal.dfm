@@ -27,6 +27,13 @@ object frmPrincipal: TfrmPrincipal
     Height = 13
     Caption = 'PORTA'
   end
+  object Image1: TImage
+    Left = 400
+    Top = 80
+    Width = 249
+    Height = 193
+    Proportional = True
+  end
   object editHost: TEdit
     Left = 25
     Top = 32
@@ -55,7 +62,7 @@ object frmPrincipal: TfrmPrincipal
   object DBGridBeleza1: TDBGridBeleza
     Left = 25
     Top = 80
-    Width = 624
+    Width = 312
     Height = 193
     Hint = 'Clique no Titulo da Coluna para Ordenar'
     Align = alCustom
@@ -234,5 +241,117 @@ object frmPrincipal: TfrmPrincipal
     RemoteServer = DSProviderConnection1
     Left = 592
     Top = 16
+    object cdsAlunoidAluno: TIntegerField
+      FieldName = 'idAluno'
+      Required = True
+    end
+    object cdsAlunonomeAluno: TStringField
+      FieldName = 'nomeAluno'
+      Required = True
+      Size = 80
+    end
+    object cdsAlunoidade: TIntegerField
+      FieldName = 'idade'
+    end
+    object cdsAlunodataNascimento: TDateField
+      FieldName = 'dataNascimento'
+    end
+    object cdsAlunoemail: TStringField
+      FieldName = 'email'
+      Size = 60
+    end
+    object cdsAlunosexo: TStringField
+      FieldName = 'sexo'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsAlunocidade: TStringField
+      FieldName = 'cidade'
+      Size = 50
+    end
+    object cdsAlunobairro: TStringField
+      FieldName = 'bairro'
+      Size = 50
+    end
+    object cdsAlunorua: TStringField
+      FieldName = 'rua'
+      Size = 50
+    end
+    object cdsAlunonumero: TIntegerField
+      FieldName = 'numero'
+    end
+    object cdsAlunocep: TIntegerField
+      FieldName = 'cep'
+    end
+    object cdsAlunotel1: TStringField
+      FieldName = 'tel1'
+      Size = 50
+    end
+    object cdsAlunotel2: TStringField
+      FieldName = 'tel2'
+      Size = 50
+    end
+    object cdsAlunonomeResponsavel: TStringField
+      FieldName = 'nomeResponsavel'
+      Size = 80
+    end
+    object cdsAlunoparentescoResponsavel: TStringField
+      FieldName = 'parentescoResponsavel'
+      Size = 50
+    end
+    object cdsAlunotelResponsavel: TStringField
+      FieldName = 'telResponsavel'
+      Size = 50
+    end
+    object cdsAlunopeso: TSingleField
+      FieldName = 'peso'
+    end
+    object cdsAlunoaltura: TSingleField
+      FieldName = 'altura'
+    end
+    object cdsAlunofrequenciaAtividadeFisica: TIntegerField
+      FieldName = 'frequenciaAtividadeFisica'
+    end
+    object cdsAlunoqtdRefeicoesDia: TIntegerField
+      FieldName = 'qtdRefeicoesDia'
+    end
+    object cdsAlunoqtdHorasSono: TIntegerField
+      FieldName = 'qtdHorasSono'
+    end
+    object cdsAlunosuplementacao: TBooleanField
+      FieldName = 'suplementacao'
+    end
+    object cdsAlunodieta: TBooleanField
+      FieldName = 'dieta'
+    end
+    object cdsAlunofumante: TBooleanField
+      FieldName = 'fumante'
+    end
+    object cdsAlunoconsomeBebidaAlcoolica: TBooleanField
+      FieldName = 'consomeBebidaAlcoolica'
+    end
+    object cdsAlunodataCadastro: TDateField
+      FieldName = 'dataCadastro'
+    end
+    object cdsAlunoativo: TBooleanField
+      FieldName = 'ativo'
+    end
+    object cdsAlunocpf: TStringField
+      FieldName = 'cpf'
+      Size = 50
+    end
+    object cdsAlunoinformacaoAdicional: TStringField
+      FieldName = 'informacaoAdicional'
+      Size = 500
+    end
+    object cdsAlunoidObjetivo: TIntegerField
+      FieldName = 'idObjetivo'
+    end
+    object cdsAlunodataComposicaoFicha: TDateField
+      FieldName = 'dataComposicaoFicha'
+    end
+    object cdsAlunoidInstrutorFicha: TIntegerField
+      FieldName = 'idInstrutorFicha'
+    end
   end
 end

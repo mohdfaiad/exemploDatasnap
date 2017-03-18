@@ -1,7 +1,7 @@
 //
 // Created by the DataSnap proxy generator.
-// 18/03/2017 14:08:31
-// 
+// 18/03/2017 20:44:11
+//
 
 unit UMetodosDoServidor;
 
@@ -16,6 +16,8 @@ type
     FReverseStringCommand: TDBXCommand;
     FFuncaoTesteCommand: TDBXCommand;
     FgetAlunosCommand: TDBXCommand;
+    FFuncaoTeste2Command: TDBXCommand;
+    FgetFotoAlunoCommand: TDBXCommand;
   public
     constructor Create(ADBXConnection: TDBXConnection); overload;
     constructor Create(ADBXConnection: TDBXConnection; AInstanceOwner: Boolean); overload;
@@ -24,6 +26,8 @@ type
     function ReverseString(Value: string): string;
     function FuncaoTeste: string;
     function getAlunos: TDataSet;
+    function FuncaoTeste2: string;
+    function getFotoAluno(codigoAluno: Integer): TStream;
   end;
 
 implementation
@@ -85,6 +89,33 @@ begin
     FgetAlunosCommand.FreeOnExecute(Result);
 end;
 
+function TServerMethods1Client.FuncaoTeste2: string;
+begin
+  if FFuncaoTeste2Command = nil then
+  begin
+    FFuncaoTeste2Command := FDBXConnection.CreateCommand;
+    FFuncaoTeste2Command.CommandType := TDBXCommandTypes.DSServerMethod;
+    FFuncaoTeste2Command.Text := 'TServerMethods1.FuncaoTeste2';
+    FFuncaoTeste2Command.Prepare;
+  end;
+  FFuncaoTeste2Command.ExecuteUpdate;
+  Result := FFuncaoTeste2Command.Parameters[0].Value.GetWideString;
+end;
+
+function TServerMethods1Client.getFotoAluno(codigoAluno: Integer): TStream;
+begin
+  if FgetFotoAlunoCommand = nil then
+  begin
+    FgetFotoAlunoCommand := FDBXConnection.CreateCommand;
+    FgetFotoAlunoCommand.CommandType := TDBXCommandTypes.DSServerMethod;
+    FgetFotoAlunoCommand.Text := 'TServerMethods1.getFotoAluno';
+    FgetFotoAlunoCommand.Prepare;
+  end;
+  FgetFotoAlunoCommand.Parameters[0].Value.SetInt32(codigoAluno);
+  FgetFotoAlunoCommand.ExecuteUpdate;
+  Result := FgetFotoAlunoCommand.Parameters[1].Value.GetStream(FInstanceOwner);
+end;
+
 
 constructor TServerMethods1Client.Create(ADBXConnection: TDBXConnection);
 begin
@@ -104,7 +135,10 @@ begin
   FReverseStringCommand.DisposeOf;
   FFuncaoTesteCommand.DisposeOf;
   FgetAlunosCommand.DisposeOf;
+  FFuncaoTeste2Command.DisposeOf;
+  FgetFotoAlunoCommand.DisposeOf;
   inherited;
 end;
 
 end.
+

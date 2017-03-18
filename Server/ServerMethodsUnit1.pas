@@ -27,6 +27,8 @@ type
     function ReverseString(Value: string): string;
     function FuncaoTeste(): string;
     function getAlunos(): Tdataset;
+    function FuncaoTeste2(): string;
+    function getFotoAluno(codigoAluno:integer): TStream;
   end;
 
 implementation
@@ -48,11 +50,33 @@ begin
 end;
 
 
+function TServerMethods1.FuncaoTeste2: string;
+begin
+  result := 'teste2';
+end;
+
 function TServerMethods1.getAlunos: Tdataset;
 begin
   cdsAluno.Close;
   cdsAluno.Open;
   result := cdsAluno;
+end;
+
+function TServerMethods1.getFotoAluno(codigoAluno: integer): TStream;
+var // http://www.devmedia.com.br/como-transferir-arquivos-entre-aplicacoes-cliente-servidor-com-datasnap/27093
+  caminho : string;
+begin
+
+  IF (fileExists( 'c:\sogym\img_Aluno\'+ inttostr(codigoAluno) + '.bmp' ))THEN
+  BEGIN
+    caminho := 'c:\sogym\img_Aluno\'+ inttostr(codigoAluno) + '.bmp';
+    Result := TFileStream.Create(caminho, fmOpenRead or fmShareDenyNone);
+  end else
+  begin
+    Result := nil;
+  end;
+
+
 end;
 
 function TServerMethods1.ReverseString(Value: string): string;
