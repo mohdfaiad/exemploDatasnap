@@ -1,0 +1,44 @@
+inherited Form1_LgXhdpiPh: TForm1_LgXhdpiPh
+  ClientHeight = 695
+  ClientWidth = 450
+  DesignerMasterStyle = 0
+  inherited TabControl1: TTabControl
+    Size.Width = 450.000000000000000000
+    Size.Height = 695.000000000000000000
+    inherited tiPrincipal: TTabItem
+      StyledSettings = [Family, Size, Style, FontColor, Other]
+      inherited ListBox1: TListBox
+        Size.Width = 450.000000000000000000
+        Size.Height = 614.000000000000000000
+        Viewport.Width = 450.000000000000000000
+        Viewport.Height = 566.000000000000000000
+        inherited SearchBox1: TSearchBox
+          Size.Width = 450.000000000000000000
+        end
+      end
+      inherited Rectangle1: TRectangle
+        Size.Width = 450.000000000000000000
+      end
+    end
+    inherited tiDetalhe: TTabItem
+      inherited COD: TLabel
+        Size.Width = 390.000000000000000000
+      end
+      inherited editCod: TEdit
+        Size.Width = 390.000000000000000000
+        Size.Height = 32.000000000000000000
+      end
+      inherited NOME: TLabel
+        Size.Width = 390.000000000000000000
+      end
+      inherited editNome: TEdit
+        Padding.Left = 90.000000000000000000
+        Padding.Top = 90.000000000000000000
+        Padding.Right = 90.000000000000000000
+        Padding.Bottom = 90.000000000000000000
+        Size.Width = 390.000000000000000000
+        Size.Height = 32.000000000000000000
+      end
+    end
+  end
+end

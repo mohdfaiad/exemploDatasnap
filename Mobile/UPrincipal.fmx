@@ -1,0 +1,405 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 330
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnClose = FormClose
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object TabControl1: TTabControl
+    Align = Client
+    FullSize = True
+    Size.Width = 330.000000000000000000
+    Size.Height = 480.000000000000000000
+    Size.PlatformDefault = False
+    TabHeight = 49.000000000000000000
+    TabIndex = 0
+    TabOrder = 0
+    TabPosition = None
+    object tiPrincipal: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = True
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'tiPrincipal'
+      object ListBox1: TListBox
+        Align = Client
+        Size.Width = 330.000000000000000000
+        Size.Height = 399.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        AlternatingRowBackground = True
+        DisableFocusEffect = True
+        ItemHeight = 35.000000000000000000
+        DefaultItemStyles.ItemStyle = ''
+        DefaultItemStyles.GroupHeaderStyle = ''
+        DefaultItemStyles.GroupFooterStyle = ''
+        OnItemClick = ListBox1ItemClick
+        Viewport.Width = 326.000000000000000000
+        Viewport.Height = 347.000000000000000000
+        object SearchBox1: TSearchBox
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 0
+          Size.Width = 330.000000000000000000
+          Size.Height = 48.000000000000000000
+          Size.PlatformDefault = False
+        end
+      end
+      object Rectangle1: TRectangle
+        Align = Top
+        Size.Width = 330.000000000000000000
+        Size.Height = 81.000000000000000000
+        Size.PlatformDefault = False
+        object EditHost: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 0
+          Text = '192.168.1.200'
+          Position.X = 16.000000000000000000
+          Position.Y = 16.000000000000000000
+        end
+        object EditPorta: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 1
+          Text = '211'
+          Position.X = 16.000000000000000000
+          Position.Y = 40.000000000000000000
+        end
+        object btnConectar: TButton
+          Position.X = 120.000000000000000000
+          Position.Y = 16.000000000000000000
+          Size.Width = 80.000000000000000000
+          Size.Height = 47.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 2
+          Text = 'CONECTAR'
+          OnClick = btnConectarClick
+        end
+      end
+    end
+    object tiDetalhe: TTabItem
+      CustomIcon = <
+        item
+        end>
+      IsSelected = False
+      Size.Width = 8.000000000000000000
+      Size.Height = 8.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Text = 'tiDetalhe'
+      object COD: TLabel
+        Align = Horizontal
+        Margins.Left = 30.000000000000000000
+        Margins.Right = 30.000000000000000000
+        Position.X = 30.000000000000000000
+        Position.Y = 24.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'COD'
+      end
+      object editCod: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Horizontal
+        TabOrder = 1
+        Position.X = 30.000000000000000000
+        Position.Y = 42.000000000000000000
+        Margins.Left = 30.000000000000000000
+        Margins.Right = 30.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object NOME: TLabel
+        Align = Horizontal
+        Margins.Left = 30.000000000000000000
+        Margins.Right = 30.000000000000000000
+        Position.X = 30.000000000000000000
+        Position.Y = 72.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'NOME'
+      end
+      object editNome: TEdit
+        Touch.InteractiveGestures = [LongTap, DoubleTap]
+        Align = Horizontal
+        TabOrder = 3
+        Position.X = 30.000000000000000000
+        Position.Y = 91.000000000000000000
+        Margins.Left = 30.000000000000000000
+        Margins.Right = 30.000000000000000000
+        Size.Width = 270.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object CANCELAR: TButton
+        Action = LiveBindingsBindNavigateCancel1
+        Enabled = True
+        ImageIndex = -1
+        Position.X = 31.000000000000000000
+        Position.Y = 121.000000000000000000
+        Size.Width = 130.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 4
+        Visible = True
+      end
+      object GRAVAR: TButton
+        Action = LiveBindingsBindNavigatePost1
+        Enabled = True
+        ImageIndex = -1
+        Position.X = 170.000000000000000000
+        Position.Y = 121.000000000000000000
+        Size.Width = 130.000000000000000000
+        Size.Height = 41.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 5
+        Visible = True
+      end
+    end
+  end
+  object SQLConnection1: TSQLConnection
+    DriverName = 'DataSnap'
+    LoginPrompt = False
+    Params.Strings = (
+      'DriverUnit=Data.DBXDataSnap'
+      'HostName=192.168.1.200'
+      'Port=211'
+      'CommunicationProtocol=tcp/ip'
+      'DatasnapContext=datasnap/'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXClientDriverLoader,Borland' +
+        '.Data.DbxClientDriver,Version=22.0.0.0,Culture=neutral,PublicKey' +
+        'Token=91d62ebb5b0d1b1b'
+      'Filters={}')
+    Left = 275
+    Top = 360
+  end
+  object DSProviderConnection1: TDSProviderConnection
+    ServerClassName = 'TServerMethods1'
+    SQLConnection = SQLConnection1
+    Left = 224
+    Top = 264
+  end
+  object cdsAluno: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'pAluno'
+    RemoteServer = DSProviderConnection1
+    Left = 272
+    Top = 216
+    object cdsAlunoidAluno: TIntegerField
+      FieldName = 'idAluno'
+      Origin = 'idAluno'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+    end
+    object cdsAlunonomeAluno: TStringField
+      FieldName = 'nomeAluno'
+      Origin = 'nomeAluno'
+      Required = True
+      Size = 80
+    end
+    object cdsAlunoidade: TIntegerField
+      FieldName = 'idade'
+      Origin = 'idade'
+    end
+    object cdsAlunodataNascimento: TDateField
+      FieldName = 'dataNascimento'
+      Origin = 'dataNascimento'
+    end
+    object cdsAlunoemail: TStringField
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 60
+    end
+    object cdsAlunosexo: TStringField
+      FieldName = 'sexo'
+      Origin = 'sexo'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsAlunocidade: TStringField
+      FieldName = 'cidade'
+      Origin = 'cidade'
+      Size = 50
+    end
+    object cdsAlunobairro: TStringField
+      FieldName = 'bairro'
+      Origin = 'bairro'
+      Size = 50
+    end
+    object cdsAlunorua: TStringField
+      FieldName = 'rua'
+      Origin = 'rua'
+      Size = 50
+    end
+    object cdsAlunonumero: TIntegerField
+      FieldName = 'numero'
+      Origin = 'numero'
+    end
+    object cdsAlunocep: TIntegerField
+      FieldName = 'cep'
+      Origin = 'cep'
+    end
+    object cdsAlunotel1: TStringField
+      FieldName = 'tel1'
+      Origin = 'tel1'
+      Size = 50
+    end
+    object cdsAlunotel2: TStringField
+      FieldName = 'tel2'
+      Origin = 'tel2'
+      Size = 50
+    end
+    object cdsAlunonomeResponsavel: TStringField
+      FieldName = 'nomeResponsavel'
+      Origin = 'nomeResponsavel'
+      Size = 80
+    end
+    object cdsAlunoparentescoResponsavel: TStringField
+      FieldName = 'parentescoResponsavel'
+      Origin = 'parentescoResponsavel'
+      Size = 50
+    end
+    object cdsAlunotelResponsavel: TStringField
+      FieldName = 'telResponsavel'
+      Origin = 'telResponsavel'
+      Size = 50
+    end
+    object cdsAlunopeso: TSingleField
+      FieldName = 'peso'
+      Origin = 'peso'
+    end
+    object cdsAlunoaltura: TSingleField
+      FieldName = 'altura'
+      Origin = 'altura'
+    end
+    object cdsAlunofrequenciaAtividadeFisica: TIntegerField
+      FieldName = 'frequenciaAtividadeFisica'
+      Origin = 'frequenciaAtividadeFisica'
+    end
+    object cdsAlunoqtdRefeicoesDia: TIntegerField
+      FieldName = 'qtdRefeicoesDia'
+      Origin = 'qtdRefeicoesDia'
+    end
+    object cdsAlunoqtdHorasSono: TIntegerField
+      FieldName = 'qtdHorasSono'
+      Origin = 'qtdHorasSono'
+    end
+    object cdsAlunosuplementacao: TBooleanField
+      FieldName = 'suplementacao'
+      Origin = 'suplementacao'
+    end
+    object cdsAlunodieta: TBooleanField
+      FieldName = 'dieta'
+      Origin = 'dieta'
+    end
+    object cdsAlunofumante: TBooleanField
+      FieldName = 'fumante'
+      Origin = 'fumante'
+    end
+    object cdsAlunoconsomeBebidaAlcoolica: TBooleanField
+      FieldName = 'consomeBebidaAlcoolica'
+      Origin = 'consomeBebidaAlcoolica'
+    end
+    object cdsAlunodataCadastro: TDateField
+      FieldName = 'dataCadastro'
+      Origin = 'dataCadastro'
+    end
+    object cdsAlunoativo: TBooleanField
+      FieldName = 'ativo'
+      Origin = 'ativo'
+    end
+    object cdsAlunocpf: TStringField
+      FieldName = 'cpf'
+      Origin = 'cpf'
+      Size = 50
+    end
+    object cdsAlunoinformacaoAdicional: TStringField
+      FieldName = 'informacaoAdicional'
+      Origin = 'informacaoAdicional'
+      Size = 500
+    end
+    object cdsAlunoidObjetivo: TIntegerField
+      FieldName = 'idObjetivo'
+      Origin = 'idObjetivo'
+    end
+    object cdsAlunodataComposicaoFicha: TDateField
+      FieldName = 'dataComposicaoFicha'
+      Origin = 'dataComposicaoFicha'
+    end
+    object cdsAlunoidInstrutorFicha: TIntegerField
+      FieldName = 'idInstrutorFicha'
+      Origin = 'idInstrutorFicha'
+    end
+  end
+  object BindSourceDB1: TBindSourceDB
+    DataSet = cdsAluno
+    ScopeMappings = <>
+    Left = 272
+    Top = 312
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 276
+    Top = 269
+    object LinkControlToField1: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'nomeAluno'
+      Control = editNome
+      Track = False
+    end
+    object LinkControlToField2: TLinkControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'idAluno'
+      Control = editCod
+      Track = False
+    end
+    object LinkListControlToField1: TLinkListControlToField
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB1
+      FieldName = 'nomeAluno'
+      Control = ListBox1
+      FillExpressions = <>
+      FillHeaderExpressions = <>
+      FillBreakGroups = <>
+    end
+  end
+  object ActionList1: TActionList
+    Left = 216
+    Top = 321
+    object ChangeTabAction1: TChangeTabAction
+      Category = 'Tab'
+      Tab = tiDetalhe
+    end
+    object LiveBindingsBindNavigatePost1: TFMXBindNavigatePost
+      Category = 'LiveBindings'
+      Text = 'Gravar'
+      OnExecute = LiveBindingsBindNavigatePost1Execute
+      DataSource = BindSourceDB1
+    end
+    object LiveBindingsBindNavigateCancel1: TFMXBindNavigateCancel
+      Category = 'LiveBindings'
+      Text = 'Cancelar'
+      OnExecute = LiveBindingsBindNavigateCancel1Execute
+      DataSource = BindSourceDB1
+    end
+    object ChangeTabAction2: TChangeTabAction
+      Category = 'Tab'
+      Tab = tiPrincipal
+    end
+  end
+end
