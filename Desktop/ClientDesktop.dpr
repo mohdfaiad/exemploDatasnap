@@ -2,7 +2,8 @@ program ClientDesktop;
 
 uses
   Vcl.Forms,
-  UPrincipal in 'UPrincipal.pas' {frmPrincipal};
+  UPrincipal in 'UPrincipal.pas' {frmPrincipal},
+  UMetodosDoServidor in 'UMetodosDoServidor.pas';
 
 {$R *.res}
 

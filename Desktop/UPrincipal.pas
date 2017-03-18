@@ -23,7 +23,9 @@ type
     dsAluno: TDataSource;
     cdsAluno: TClientDataSet;
     Memo1: TMemo;
+    Button1: TButton;
     procedure btnConectarClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -36,6 +38,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses UMetodosDoServidor;
 
 procedure TfrmPrincipal.btnConectarClick(Sender: TObject);
 begin
@@ -82,6 +86,15 @@ begin
       end;
   end;
 
+end;
+
+procedure TfrmPrincipal.Button1Click(Sender: TObject);
+var
+ser: TServerMethods1Client;
+begin
+  //
+  ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+  showmessage(ser.FuncaoTeste);
 end;
 
 end.

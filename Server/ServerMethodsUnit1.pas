@@ -18,12 +18,15 @@ type
     FDConnection1: TFDConnection;
     qAluno: TFDQuery;
     pAluno: TDataSetProvider;
+    cdsAluno: TClientDataSet;
   private
     { Private declarations }
   public
     { Public declarations }
     function EchoString(Value: string): string;
     function ReverseString(Value: string): string;
+    function FuncaoTeste(): string;
+    function getAlunos(): Tdataset;
   end;
 
 implementation
@@ -37,6 +40,19 @@ uses System.StrUtils;
 function TServerMethods1.EchoString(Value: string): string;
 begin
   Result := Value;
+end;
+
+function TServerMethods1.FuncaoTeste: string;
+begin
+  result := 'Oi. Teste!';
+end;
+
+
+function TServerMethods1.getAlunos: Tdataset;
+begin
+  cdsAluno.Close;
+  cdsAluno.Open;
+  result := cdsAluno;
 end;
 
 function TServerMethods1.ReverseString(Value: string): string;

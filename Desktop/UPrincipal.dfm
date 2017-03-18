@@ -99,7 +99,7 @@ object frmPrincipal: TfrmPrincipal
     Width = 624
     Height = 121
     Lines.Strings = (
-      'Sobre a conex'#227'o:'
+      'Sobre a conex'#227'o base:'
       ''
       'SQLCOnnection1: *Driver = DATASNAP;'
       ''
@@ -108,11 +108,42 @@ object frmPrincipal: TfrmPrincipal
         'onnection = SQLConnection1;'
       ''
       
+        '________________________________________________________________' +
+        '________________'
+      ''
+      'Sobre a conex'#227'o com dataset:'
+      ''
+      
         'CDSAluno: *RemoteServer = DSProviderConnection1; *ProviderName =' +
-        ' pAluno')
+        ' pAluno'
+      ''
+      
+        '________________________________________________________________' +
+        '________________'
+      ''
+      'Sobre a conex'#227'o para usar m'#233'todos do servidor:'
+      ''
+      
+        '* os m'#233'todos ser'#227'o criados na servermethodsUnit1 do projeto serv' +
+        'idor;'
+      
+        '* na Aplica'#231#227'ocliente, clica com o bot'#227'o direito sobre SQLCOnnec' +
+        'tion1 e click em "Genereta Datasnap client clases", ent'#227'o uma un' +
+        'it se abrir'#225', salve-a. ela '#233' respons'#225'vel por chamar os metodos c' +
+        'riados no servidor.'
+      '*exemplo para se chamar um metodo do servidor no buttom1')
     ReadOnly = True
     ScrollBars = ssBoth
     TabOrder = 5
+  end
+  object Button1: TButton
+    Left = 152
+    Top = 281
+    Width = 75
+    Height = 25
+    Caption = 'Button1'
+    TabOrder = 6
+    OnClick = Button1Click
   end
   object SQLConnection1: TSQLConnection
     DriverName = 'DataSnap'
@@ -130,6 +161,7 @@ object frmPrincipal: TfrmPrincipal
       'Filters={}')
     Left = 403
     Top = 16
+    UniqueId = '{4C2681FA-B866-41D7-ABEB-4AC8F5744CDC}'
   end
   object DSProviderConnection1: TDSProviderConnection
     ServerClassName = 'TServerMethods1'

@@ -35,4 +35,11 @@ object ServerMethods1: TServerMethods1
     Left = 40
     Top = 40
   end
+  object cdsAluno: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'pAluno'
+    Left = 72
+    Top = 40
+  end
 end
