@@ -33,7 +33,7 @@ object frmPrincipal: TfrmPrincipal
     Width = 121
     Height = 21
     TabOrder = 0
-    Text = 'LOCALHOST'
+    Text = '192.168.1.200'
   end
   object editPorta: TEdit
     Left = 152
@@ -192,27 +192,38 @@ object frmPrincipal: TfrmPrincipal
   object Button1: TButton
     Left = 25
     Top = 279
-    Width = 75
+    Width = 96
     Height = 25
-    Caption = 'Button1'
+    Caption = 'Visualizar Foto'
     TabOrder = 6
     OnClick = Button1Click
   end
   object Image1: TcxImage
     Left = 400
     Top = 80
+    Align = alCustom
+    Anchors = [akTop, akRight]
+    Style.Color = 3026478
     TabOrder = 7
     Height = 193
     Width = 249
   end
   object button3: TButton
-    Left = 106
+    Left = 122
     Top = 279
     Width = 75
     Height = 25
     Caption = 'Mudar Foto'
     TabOrder = 8
     OnClick = button3Click
+  end
+  object Button2: TButton
+    Left = 203
+    Top = 279
+    Width = 75
+    Height = 25
+    Caption = 'Button2'
+    TabOrder = 9
   end
   object SQLConnection1: TSQLConnection
     DriverName = 'DataSnap'
@@ -240,6 +251,7 @@ object frmPrincipal: TfrmPrincipal
   end
   object dsAluno: TDataSource
     DataSet = cdsAluno
+    OnDataChange = dsAlunoDataChange
     Left = 624
     Top = 16
   end

@@ -60,9 +60,11 @@ type
     cdsAlunoidInstrutorFicha: TIntegerField;
     Image1: TcxImage;
     button3: TButton;
+    Button2: TButton;
     procedure btnConectarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure button3Click(Sender: TObject);
+    procedure dsAlunoDataChange(Sender: TObject; Field: TField);
   private
     { Private declarations }
   public
@@ -132,7 +134,7 @@ cdsteste: TDataSet;
 arquivoJson: TJSONArray;
 fotoStream : TStream;
 begin
-  // memo1.Lines.Text :=(gsAppPath);
+  // TESTE SERVIDOR DATASNAP RETORNANDO CLIENTDATASET
 
   {
   if SQLConnection1.Connected then
@@ -152,7 +154,7 @@ begin
   // Assimila foto do servidor
   if SQLConnection1.Connected then
   begin
-      try
+
       ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
       fotoStream := ser.getFotoAluno(cdsAlunoidAluno.AsInteger);
       if not(fotoStream = nil)then
@@ -162,9 +164,7 @@ begin
       begin
         Image1.Picture := nil;
       end;
-      finally
-        //fotoStream.Free;
-      end;
+
 
   end;
 
@@ -196,6 +196,11 @@ begin
 
   end;
 
+end;
+
+procedure TfrmPrincipal.dsAlunoDataChange(Sender: TObject; Field: TField);
+begin
+  Button1Click(sender);
 end;
 
 end.
