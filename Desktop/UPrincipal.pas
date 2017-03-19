@@ -59,11 +59,9 @@ type
     cdsAlunodataComposicaoFicha: TDateField;
     cdsAlunoidInstrutorFicha: TIntegerField;
     Image1: TcxImage;
-    Button2: TButton;
     button3: TButton;
     procedure btnConectarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
     procedure button3Click(Sender: TObject);
   private
     { Private declarations }
@@ -154,6 +152,7 @@ begin
   // Assimila foto do servidor
   if SQLConnection1.Connected then
   begin
+      try
       ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
       fotoStream := ser.getFotoAluno(cdsAlunoidAluno.AsInteger);
       if not(fotoStream = nil)then
@@ -163,35 +162,12 @@ begin
       begin
         Image1.Picture := nil;
       end;
-
-  end;
-
-end;
-
-procedure TfrmPrincipal.Button2Click(Sender: TObject);
-var
-ser: TServerMethods1Client;
-fotoStream : TmemoryStream;
-begin
-  // Assimila foto do servidor
-  if SQLConnection1.Connected then
-  begin
-      ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
-      {
-      fotoStream := TMemoryStream.Create; //Memory
-      Image1.Picture.Bitmap.SaveToStream(fotoStream);
-      ShowMessage(IntToStr(fotoStream.Size));
-      if(ser.setFotoAluno(fotoStream, cdsAlunoidAluno.AsInteger) = true)then
-      begin
-        ShowMessage('imagem enviada com sucesso.');
-        ShowMessage(IntToStr(fotoStream.Size));
-      end else
-      begin
-        ShowMessage('falha ao enviar imagem.');
+      finally
+        //fotoStream.Free;
       end;
-      }
 
   end;
+
 end;
 
 procedure TfrmPrincipal.button3Click(Sender: TObject);
@@ -209,7 +185,15 @@ begin
     ms.Position := 0;
     jsa := TJSONArray.Create;
     jsa := TDBXJSONTools.StreamToJSON(ms, 0, ms.Size) ;
-    ser.uploadPicture(jsa);
+
+    if(ser.setFotoAluno(jsa, cdsAlunoidAluno.AsInteger) = true)then
+    begin
+      ShowMessage('imagem enviada com sucesso.');
+    end else
+    begin
+      ShowMessage('falha ao enviar imagem.');
+    end;
+
   end;
 
 end;

@@ -1,6 +1,6 @@
 //
 // Created by the DataSnap proxy generator.
-// 19/03/2017 12:56:34
+// 19/03/2017 13:44:40
 //
 
 unit UMetodosDoServidor;
@@ -16,10 +16,8 @@ type
     FReverseStringCommand: TDBXCommand;
     FFuncaoTesteCommand: TDBXCommand;
     FgetAlunosCommand: TDBXCommand;
-    FFuncaoTeste2Command: TDBXCommand;
     FgetFotoAlunoCommand: TDBXCommand;
     FsetFotoAlunoCommand: TDBXCommand;
-    FuploadPictureCommand: TDBXCommand;
   public
     constructor Create(ADBXConnection: TDBXConnection); overload;
     constructor Create(ADBXConnection: TDBXConnection; AInstanceOwner: Boolean); overload;
@@ -28,10 +26,8 @@ type
     function ReverseString(Value: string): string;
     function FuncaoTeste: string;
     function getAlunos: TDataSet;
-    function FuncaoTeste2: string;
     function getFotoAluno(codigoAluno: Integer): TStream;
-    function setFotoAluno(fotoStream: TMemoryStream; codigoAluno: Integer): Boolean;
-    function uploadPicture(jsa: TJSONArray): string;
+    function setFotoAluno(jsa: TJSONArray; codigoAluno: Integer): Boolean;
   end;
 
 implementation
@@ -93,19 +89,6 @@ begin
     FgetAlunosCommand.FreeOnExecute(Result);
 end;
 
-function TServerMethods1Client.FuncaoTeste2: string;
-begin
-  if FFuncaoTeste2Command = nil then
-  begin
-    FFuncaoTeste2Command := FDBXConnection.CreateCommand;
-    FFuncaoTeste2Command.CommandType := TDBXCommandTypes.DSServerMethod;
-    FFuncaoTeste2Command.Text := 'TServerMethods1.FuncaoTeste2';
-    FFuncaoTeste2Command.Prepare;
-  end;
-  FFuncaoTeste2Command.ExecuteUpdate;
-  Result := FFuncaoTeste2Command.Parameters[0].Value.GetWideString;
-end;
-
 function TServerMethods1Client.getFotoAluno(codigoAluno: Integer): TStream;
 begin
   if FgetFotoAlunoCommand = nil then
@@ -120,7 +103,7 @@ begin
   Result := FgetFotoAlunoCommand.Parameters[1].Value.GetStream(FInstanceOwner);
 end;
 
-function TServerMethods1Client.setFotoAluno(fotoStream: TMemoryStream; codigoAluno: Integer): Boolean;
+function TServerMethods1Client.setFotoAluno(jsa: TJSONArray; codigoAluno: Integer): Boolean;
 begin
   if FsetFotoAlunoCommand = nil then
   begin
@@ -129,24 +112,10 @@ begin
     FsetFotoAlunoCommand.Text := 'TServerMethods1.setFotoAluno';
     FsetFotoAlunoCommand.Prepare;
   end;
-  FsetFotoAlunoCommand.Parameters[0].Value.SetStream(fotoStream, FInstanceOwner);
+  FsetFotoAlunoCommand.Parameters[0].Value.SetJSONValue(jsa, FInstanceOwner);
   FsetFotoAlunoCommand.Parameters[1].Value.SetInt32(codigoAluno);
   FsetFotoAlunoCommand.ExecuteUpdate;
   Result := FsetFotoAlunoCommand.Parameters[2].Value.GetBoolean;
-end;
-
-function TServerMethods1Client.uploadPicture(jsa: TJSONArray): string;
-begin
-  if FuploadPictureCommand = nil then
-  begin
-    FuploadPictureCommand := FDBXConnection.CreateCommand;
-    FuploadPictureCommand.CommandType := TDBXCommandTypes.DSServerMethod;
-    FuploadPictureCommand.Text := 'TServerMethods1.uploadPicture';
-    FuploadPictureCommand.Prepare;
-  end;
-  FuploadPictureCommand.Parameters[0].Value.SetJSONValue(jsa, FInstanceOwner);
-  FuploadPictureCommand.ExecuteUpdate;
-  Result := FuploadPictureCommand.Parameters[1].Value.GetWideString;
 end;
 
 
@@ -168,10 +137,8 @@ begin
   FReverseStringCommand.DisposeOf;
   FFuncaoTesteCommand.DisposeOf;
   FgetAlunosCommand.DisposeOf;
-  FFuncaoTeste2Command.DisposeOf;
   FgetFotoAlunoCommand.DisposeOf;
   FsetFotoAlunoCommand.DisposeOf;
-  FuploadPictureCommand.DisposeOf;
   inherited;
 end;
 

@@ -205,22 +205,13 @@ object frmPrincipal: TfrmPrincipal
     Height = 193
     Width = 249
   end
-  object Button2: TButton
-    Left = 106
-    Top = 281
-    Width = 75
-    Height = 25
-    Caption = 'mudar foto'
-    TabOrder = 8
-    OnClick = Button2Click
-  end
   object button3: TButton
-    Left = 262
+    Left = 106
     Top = 279
     Width = 75
     Height = 25
-    Caption = 'mudar foto 2'
-    TabOrder = 9
+    Caption = 'Mudar Foto'
+    TabOrder = 8
     OnClick = button3Click
   end
   object SQLConnection1: TSQLConnection
