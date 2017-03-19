@@ -7,7 +7,9 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.ExtCtrls, Vcl.DBCtrls,
   Vcl.Grids, Vcl.DBGrids, DBGridBeleza, Vcl.StdCtrls, Data.DBXDataSnap,
   IPPeerClient, Data.DBXCommon, Datasnap.DBClient, Datasnap.DSConnect,
-  Data.SqlExpr, MIDASLIB, System.JSON, Data.DBXJSONCommon;
+  Data.SqlExpr, MIDASLIB, System.JSON, Data.DBXJSONCommon, cxGraphics,
+  cxControls, cxLookAndFeels, cxLookAndFeelPainters, cxContainer, cxEdit,
+  cxImage;
 
 type
   TfrmPrincipal = class(TForm)
@@ -24,7 +26,6 @@ type
     cdsAluno: TClientDataSet;
     Memo1: TMemo;
     Button1: TButton;
-    Image1: TImage;
     cdsAlunoidAluno: TIntegerField;
     cdsAlunonomeAluno: TStringField;
     cdsAlunoidade: TIntegerField;
@@ -57,8 +58,13 @@ type
     cdsAlunoidObjetivo: TIntegerField;
     cdsAlunodataComposicaoFicha: TDateField;
     cdsAlunoidInstrutorFicha: TIntegerField;
+    Image1: TcxImage;
+    Button2: TButton;
+    button3: TButton;
     procedure btnConectarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure button3Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -128,9 +134,7 @@ cdsteste: TDataSet;
 arquivoJson: TJSONArray;
 fotoStream : TStream;
 begin
-  //
-  memo1.Lines.Text := (ExtractFileDir(GetCurrentDir));
-  memo1.Lines.Text :=(gsAppPath);
+  // memo1.Lines.Text :=(gsAppPath);
 
   {
   if SQLConnection1.Connected then
@@ -160,6 +164,52 @@ begin
         Image1.Picture := nil;
       end;
 
+  end;
+
+end;
+
+procedure TfrmPrincipal.Button2Click(Sender: TObject);
+var
+ser: TServerMethods1Client;
+fotoStream : TmemoryStream;
+begin
+  // Assimila foto do servidor
+  if SQLConnection1.Connected then
+  begin
+      ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+      {
+      fotoStream := TMemoryStream.Create; //Memory
+      Image1.Picture.Bitmap.SaveToStream(fotoStream);
+      ShowMessage(IntToStr(fotoStream.Size));
+      if(ser.setFotoAluno(fotoStream, cdsAlunoidAluno.AsInteger) = true)then
+      begin
+        ShowMessage('imagem enviada com sucesso.');
+        ShowMessage(IntToStr(fotoStream.Size));
+      end else
+      begin
+        ShowMessage('falha ao enviar imagem.');
+      end;
+      }
+
+  end;
+end;
+
+procedure TfrmPrincipal.button3Click(Sender: TObject);
+var
+  ser: TServerMethods1Client;
+  ms: TStream;
+  jsa: TJSONArray;
+  picType : integer;
+begin
+  if SQLConnection1.Connected then
+  begin
+    ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+    ms := TMemoryStream.Create;
+    Image1.Picture.Graphic.SaveToStream(ms);
+    ms.Position := 0;
+    jsa := TJSONArray.Create;
+    jsa := TDBXJSONTools.StreamToJSON(ms, 0, ms.Size) ;
+    ser.uploadPicture(jsa);
   end;
 
 end;

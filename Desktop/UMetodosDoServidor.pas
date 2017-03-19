@@ -1,6 +1,6 @@
 //
 // Created by the DataSnap proxy generator.
-// 18/03/2017 20:44:11
+// 19/03/2017 12:56:34
 //
 
 unit UMetodosDoServidor;
@@ -18,6 +18,8 @@ type
     FgetAlunosCommand: TDBXCommand;
     FFuncaoTeste2Command: TDBXCommand;
     FgetFotoAlunoCommand: TDBXCommand;
+    FsetFotoAlunoCommand: TDBXCommand;
+    FuploadPictureCommand: TDBXCommand;
   public
     constructor Create(ADBXConnection: TDBXConnection); overload;
     constructor Create(ADBXConnection: TDBXConnection; AInstanceOwner: Boolean); overload;
@@ -28,6 +30,8 @@ type
     function getAlunos: TDataSet;
     function FuncaoTeste2: string;
     function getFotoAluno(codigoAluno: Integer): TStream;
+    function setFotoAluno(fotoStream: TMemoryStream; codigoAluno: Integer): Boolean;
+    function uploadPicture(jsa: TJSONArray): string;
   end;
 
 implementation
@@ -116,6 +120,35 @@ begin
   Result := FgetFotoAlunoCommand.Parameters[1].Value.GetStream(FInstanceOwner);
 end;
 
+function TServerMethods1Client.setFotoAluno(fotoStream: TMemoryStream; codigoAluno: Integer): Boolean;
+begin
+  if FsetFotoAlunoCommand = nil then
+  begin
+    FsetFotoAlunoCommand := FDBXConnection.CreateCommand;
+    FsetFotoAlunoCommand.CommandType := TDBXCommandTypes.DSServerMethod;
+    FsetFotoAlunoCommand.Text := 'TServerMethods1.setFotoAluno';
+    FsetFotoAlunoCommand.Prepare;
+  end;
+  FsetFotoAlunoCommand.Parameters[0].Value.SetStream(fotoStream, FInstanceOwner);
+  FsetFotoAlunoCommand.Parameters[1].Value.SetInt32(codigoAluno);
+  FsetFotoAlunoCommand.ExecuteUpdate;
+  Result := FsetFotoAlunoCommand.Parameters[2].Value.GetBoolean;
+end;
+
+function TServerMethods1Client.uploadPicture(jsa: TJSONArray): string;
+begin
+  if FuploadPictureCommand = nil then
+  begin
+    FuploadPictureCommand := FDBXConnection.CreateCommand;
+    FuploadPictureCommand.CommandType := TDBXCommandTypes.DSServerMethod;
+    FuploadPictureCommand.Text := 'TServerMethods1.uploadPicture';
+    FuploadPictureCommand.Prepare;
+  end;
+  FuploadPictureCommand.Parameters[0].Value.SetJSONValue(jsa, FInstanceOwner);
+  FuploadPictureCommand.ExecuteUpdate;
+  Result := FuploadPictureCommand.Parameters[1].Value.GetWideString;
+end;
+
 
 constructor TServerMethods1Client.Create(ADBXConnection: TDBXConnection);
 begin
@@ -137,6 +170,8 @@ begin
   FgetAlunosCommand.DisposeOf;
   FFuncaoTeste2Command.DisposeOf;
   FgetFotoAlunoCommand.DisposeOf;
+  FsetFotoAlunoCommand.DisposeOf;
+  FuploadPictureCommand.DisposeOf;
   inherited;
 end;
 

@@ -2,8 +2,8 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Principal'
-  ClientHeight = 93
-  ClientWidth = 154
+  ClientHeight = 147
+  ClientWidth = 738
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -38,5 +38,12 @@ object frmPrincipal: TfrmPrincipal
     Caption = 'INICIAR'
     TabOrder = 1
     OnClick = btnIniciarClick
+  end
+  object Memo1: TMemo
+    Left = 152
+    Top = 8
+    Width = 553
+    Height = 89
+    TabOrder = 2
   end
 end

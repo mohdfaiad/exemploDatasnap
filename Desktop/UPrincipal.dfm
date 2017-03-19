@@ -27,13 +27,6 @@ object frmPrincipal: TfrmPrincipal
     Height = 13
     Caption = 'PORTA'
   end
-  object Image1: TImage
-    Left = 400
-    Top = 80
-    Width = 249
-    Height = 193
-    Proportional = True
-  end
   object editHost: TEdit
     Left = 25
     Top = 32
@@ -197,13 +190,38 @@ object frmPrincipal: TfrmPrincipal
     TabOrder = 5
   end
   object Button1: TButton
-    Left = 152
-    Top = 281
+    Left = 25
+    Top = 279
     Width = 75
     Height = 25
     Caption = 'Button1'
     TabOrder = 6
     OnClick = Button1Click
+  end
+  object Image1: TcxImage
+    Left = 400
+    Top = 80
+    TabOrder = 7
+    Height = 193
+    Width = 249
+  end
+  object Button2: TButton
+    Left = 106
+    Top = 281
+    Width = 75
+    Height = 25
+    Caption = 'mudar foto'
+    TabOrder = 8
+    OnClick = Button2Click
+  end
+  object button3: TButton
+    Left = 262
+    Top = 279
+    Width = 75
+    Height = 25
+    Caption = 'mudar foto 2'
+    TabOrder = 9
+    OnClick = button3Click
   end
   object SQLConnection1: TSQLConnection
     DriverName = 'DataSnap'

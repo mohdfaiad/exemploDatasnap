@@ -11,6 +11,7 @@ type
     editPort: TEdit;
     btnIniciar: TButton;
     Label1: TLabel;
+    Memo1: TMemo;
     procedure btnIniciarClick(Sender: TObject);
   private
     { Private declarations }
