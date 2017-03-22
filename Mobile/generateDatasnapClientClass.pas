@@ -1,9 +1,9 @@
 //
 // Created by the DataSnap proxy generator.
-// 22/03/2017 10:37:55
+// 22/03/2017 10:53:17
 //
 
-unit UMetodosDoServidor;
+unit generateDatasnapClientClass;
 
 interface
 

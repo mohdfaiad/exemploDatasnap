@@ -28,6 +28,7 @@ type
     function FuncaoTeste(): string;
     function getAlunos(): Tdataset;
     function getFotoAluno(codigoAluno:integer): TStream;
+    function getFotoAlunoJSON(codigoAluno:integer): TJSONArray;
     function setFotoAluno(jsa: TJSONArray; codigoAluno:integer): boolean;
   end;
 
@@ -73,6 +74,28 @@ begin
   end;
 
 
+end;
+
+function TServerMethods1.getFotoAlunoJSON(codigoAluno: integer): TJSONArray;
+var
+  caminho : string;
+  jsa : TJSONArray;
+  ms: TStream;
+begin
+  IF (fileExists( 'c:\sogym\img_Aluno\'+ inttostr(codigoAluno) + '.bmp' ))THEN
+  BEGIN
+
+    caminho := 'c:\sogym\img_Aluno\'+ inttostr(codigoAluno) + '.bmp';
+    ms := TFileStream.Create(caminho, fmOpenRead or fmShareDenyNone);
+
+    jsa := TJSONArray.Create;
+    jsa := TDBXJSONTools.StreamToJSON(ms, 0, ms.Size) ;
+
+    Result := jsa;
+  end else
+  begin
+    Result := nil;
+  end;
 end;
 
 function TServerMethods1.ReverseString(Value: string): string;

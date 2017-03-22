@@ -5,10 +5,11 @@ inherited Form1_Windows: TForm1_Windows
     Size.Width = 300.000000000000000000
     inherited tiPrincipal: TTabItem
       StyledSettings = [Family, Size, Style, FontColor, Other]
+      Size.Width = 150.000000000000000000
       inherited ListBox1: TListBox
         Size.Width = 300.000000000000000000
         Viewport.Width = 296.000000000000000000
-        Viewport.Height = 347.000000000000000000
+        Viewport.Height = 298.000000000000000000
         inherited SearchBox1: TSearchBox
           Size.Width = 300.000000000000000000
         end
@@ -18,6 +19,7 @@ inherited Form1_Windows: TForm1_Windows
       end
     end
     inherited tiDetalhe: TTabItem
+      Size.Width = 148.000000000000000000
       inherited COD: TLabel
         Size.Width = 240.000000000000000000
       end

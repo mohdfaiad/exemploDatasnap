@@ -65,6 +65,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure button3Click(Sender: TObject);
     procedure dsAlunoDataChange(Sender: TObject; Field: TField);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -157,6 +158,8 @@ begin
 
       ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
       fotoStream := ser.getFotoAluno(cdsAlunoidAluno.AsInteger);
+      fotoStream.Position := 0;
+      ShowMessage(inttostr(fotoStream.Size));
       if not(fotoStream = nil)then
       begin
         Image1.Picture.Bitmap.LoadFromStream(fotoStream);
@@ -168,6 +171,32 @@ begin
 
   end;
 
+end;
+
+procedure TfrmPrincipal.Button2Click(Sender: TObject);
+var
+  ser: TServerMethods1Client;
+  ms: TStream;
+  jsa: TJSONArray;
+begin
+  if SQLConnection1.Connected then
+  begin
+
+      ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+      jsa := ser.getFotoAlunoJSON(cdsAlunoidAluno.AsInteger);
+      if not(jsa = nil)then
+      begin
+        ms := TMemoryStream.Create;
+        ms.Position := 0;
+        ms := TDBXJSONTools.JSONToStream(jsa);
+        Image1.Picture.Bitmap.LoadFromStream(ms);
+      end else
+      begin
+        Image1.Picture := nil;
+      end;
+
+
+  end;
 end;
 
 procedure TfrmPrincipal.button3Click(Sender: TObject);
@@ -200,7 +229,7 @@ end;
 
 procedure TfrmPrincipal.dsAlunoDataChange(Sender: TObject; Field: TField);
 begin
-  Button1Click(sender);
+  // Button1Click(sender);
 end;
 
 end.

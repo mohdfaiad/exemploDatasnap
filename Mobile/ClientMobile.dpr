@@ -3,7 +3,8 @@ program ClientMobile;
 uses
   System.StartUpCopy,
   FMX.Forms,
-  UPrincipal in 'UPrincipal.pas' {Form1};
+  UPrincipal in 'UPrincipal.pas' {Form1},
+  generateDatasnapClientClass in 'generateDatasnapClientClass.pas';
 
 {$R *.res}
 

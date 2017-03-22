@@ -74,13 +74,15 @@ type
     ChangeTabAction2: TChangeTabAction;
     CANCELAR: TButton;
     GRAVAR: TButton;
+    Image1: TImage;
+    Button1: TButton;
+    procedure ListBox1DblClick(Sender: TObject);
     procedure btnConectarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure LiveBindingsBindNavigatePost1Execute(Sender: TObject);
     procedure LiveBindingsBindNavigateCancel1Execute(Sender: TObject);
-    procedure ListBox1ItemClick(const Sender: TCustomListBox;
-      const Item: TListBoxItem);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -93,6 +95,10 @@ var
 implementation
 
 {$R *.fmx}
+{$R *.NmXhdpiPh.fmx ANDROID}
+{$R *.SmXhdpiPh.fmx ANDROID}
+
+uses generateDatasnapClientClass;
 {$R *.Windows.fmx MSWINDOWS}
 {$R *.Surface.fmx MSWINDOWS}
 {$R *.LgXhdpiPh.fmx ANDROID}
@@ -172,6 +178,46 @@ begin {
       end;
 end;
 
+procedure TForm1.Button1Click(Sender: TObject);
+var
+ser: TServerMethods1Client;
+fotoStream : TStream;
+b: Byte;
+  mem: TBytesStream;
+begin
+//
+  if SQLConnection1.Connected then
+  begin
+
+      ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+      {fotoStream := TmemoryStream.Create;
+      fotoStream := ser.getFotoAluno(cdsAlunoidAluno.AsInteger);
+      fotoStream.Position := 0;
+      ShowMessage(inttostr(fotoStream.Size));
+      if not(fotoStream = nil)then
+      begin
+        //Image1.Bitmap.LoadFromFile('c:\sogym\img_Aluno\'+ cdsAlunoidAluno.AsString + '.bmp');
+        Image1.Bitmap.LoadFromStream(ser.getFotoAluno(cdsAlunoidAluno.AsInteger));
+      end;// else
+      //begin
+       // Image1.Bitmap := nil;
+     // end;
+       }
+     fotoStream := ser.getFotoAluno(cdsAlunoidAluno.AsInteger);
+     mem := TBytesStream.Create;
+     while fotoStream.Read(b, 1) = 1 do
+     begin
+      mem.Write(b, 1);
+     end;
+
+      Image1.Bitmap.LoadFromStream(mem);
+
+
+     mem.Free;
+
+  end;
+end;
+
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if(SQLConnection1.Connected = true)then
@@ -206,8 +252,7 @@ begin
   }
 end;
 
-procedure TForm1.ListBox1ItemClick(const Sender: TCustomListBox;
-  const Item: TListBoxItem);
+procedure TForm1.ListBox1DblClick(Sender: TObject);
 begin
   //
   ChangeTabAction1.ExecuteTarget(self);

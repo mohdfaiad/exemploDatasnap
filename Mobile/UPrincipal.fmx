@@ -9,7 +9,7 @@ object Form1: TForm1
   FormFactor.Devices = [Desktop]
   OnClose = FormClose
   OnShow = FormShow
-  DesignerMasterStyle = 0
+  DesignerMasterStyle = 3
   object TabControl1: TTabControl
     Align = Client
     FullSize = True
@@ -17,34 +17,34 @@ object Form1: TForm1
     Size.Height = 480.000000000000000000
     Size.PlatformDefault = False
     TabHeight = 49.000000000000000000
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
-    TabPosition = None
+    TabPosition = Top
     object tiPrincipal: TTabItem
       CustomIcon = <
         item
         end>
-      IsSelected = True
-      Size.Width = 8.000000000000000000
-      Size.Height = 8.000000000000000000
+      IsSelected = False
+      Size.Width = 165.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'tiPrincipal'
       object ListBox1: TListBox
         Align = Client
         Size.Width = 330.000000000000000000
-        Size.Height = 399.000000000000000000
+        Size.Height = 350.000000000000000000
         Size.PlatformDefault = False
         TabOrder = 0
+        OnDblClick = ListBox1DblClick
         AlternatingRowBackground = True
         DisableFocusEffect = True
         ItemHeight = 35.000000000000000000
         DefaultItemStyles.ItemStyle = ''
         DefaultItemStyles.GroupHeaderStyle = ''
         DefaultItemStyles.GroupFooterStyle = ''
-        OnItemClick = ListBox1ItemClick
-        Viewport.Width = 326.000000000000000000
-        Viewport.Height = 347.000000000000000000
+        Viewport.Width = 330.000000000000000000
+        Viewport.Height = 302.000000000000000000
         object SearchBox1: TSearchBox
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
@@ -89,9 +89,9 @@ object Form1: TForm1
       CustomIcon = <
         item
         end>
-      IsSelected = False
-      Size.Width = 8.000000000000000000
-      Size.Height = 8.000000000000000000
+      IsSelected = True
+      Size.Width = 165.000000000000000000
+      Size.Height = 49.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       Text = 'tiDetalhe'
@@ -115,7 +115,7 @@ object Form1: TForm1
         Margins.Left = 30.000000000000000000
         Margins.Right = 30.000000000000000000
         Size.Width = 270.000000000000000000
-        Size.Height = 22.000000000000000000
+        Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
       end
       object NOME: TLabel
@@ -138,7 +138,7 @@ object Form1: TForm1
         Margins.Left = 30.000000000000000000
         Margins.Right = 30.000000000000000000
         Size.Width = 270.000000000000000000
-        Size.Height = 22.000000000000000000
+        Size.Height = 32.000000000000000000
         Size.PlatformDefault = False
       end
       object CANCELAR: TButton
@@ -165,6 +165,23 @@ object Form1: TForm1
         TabOrder = 5
         Visible = True
       end
+      object Image1: TImage
+        MultiResBitmap = <
+          item
+          end>
+        Position.X = 40.000000000000000000
+        Position.Y = 184.000000000000000000
+        Size.Width = 209.000000000000000000
+        Size.Height = 137.000000000000000000
+        Size.PlatformDefault = False
+      end
+      object Button1: TButton
+        Position.X = 80.000000000000000000
+        Position.Y = 336.000000000000000000
+        TabOrder = 7
+        Text = 'Button1'
+        OnClick = Button1Click
+      end
     end
   end
   object SQLConnection1: TSQLConnection
@@ -183,6 +200,7 @@ object Form1: TForm1
       'Filters={}')
     Left = 275
     Top = 360
+    UniqueId = '{BF1B37B2-51A2-43AB-B681-2A6E26111124}'
   end
   object DSProviderConnection1: TDSProviderConnection
     ServerClassName = 'TServerMethods1'

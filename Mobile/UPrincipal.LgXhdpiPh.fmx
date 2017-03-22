@@ -7,11 +7,12 @@ inherited Form1_LgXhdpiPh: TForm1_LgXhdpiPh
     Size.Height = 695.000000000000000000
     inherited tiPrincipal: TTabItem
       StyledSettings = [Family, Size, Style, FontColor, Other]
+      Size.Width = 225.000000000000000000
       inherited ListBox1: TListBox
         Size.Width = 450.000000000000000000
-        Size.Height = 614.000000000000000000
+        Size.Height = 565.000000000000000000
         Viewport.Width = 450.000000000000000000
-        Viewport.Height = 566.000000000000000000
+        Viewport.Height = 517.000000000000000000
         inherited SearchBox1: TSearchBox
           Size.Width = 450.000000000000000000
         end
@@ -21,6 +22,7 @@ inherited Form1_LgXhdpiPh: TForm1_LgXhdpiPh
       end
     end
     inherited tiDetalhe: TTabItem
+      Size.Width = 225.000000000000000000
       inherited COD: TLabel
         Size.Width = 390.000000000000000000
       end

@@ -192,9 +192,9 @@ object frmPrincipal: TfrmPrincipal
   object Button1: TButton
     Left = 25
     Top = 279
-    Width = 96
+    Width = 112
     Height = 25
-    Caption = 'Visualizar Foto'
+    Caption = 'Visualizar Foto Strem'
     TabOrder = 6
     OnClick = Button1Click
   end
@@ -209,7 +209,7 @@ object frmPrincipal: TfrmPrincipal
     Width = 249
   end
   object button3: TButton
-    Left = 122
+    Left = 262
     Top = 279
     Width = 75
     Height = 25
@@ -218,12 +218,13 @@ object frmPrincipal: TfrmPrincipal
     OnClick = button3Click
   end
   object Button2: TButton
-    Left = 203
+    Left = 141
     Top = 279
-    Width = 75
+    Width = 117
     Height = 25
-    Caption = 'Button2'
+    Caption = 'Visualizar foto json'
     TabOrder = 9
+    OnClick = Button2Click
   end
   object SQLConnection1: TSQLConnection
     DriverName = 'DataSnap'
