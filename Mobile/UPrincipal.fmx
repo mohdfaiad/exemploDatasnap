@@ -184,6 +184,12 @@ object Form1: TForm1
       end
     end
   end
+  object AniIndicator1: TAniIndicator
+    Align = Center
+    Enabled = True
+    Style = Circular
+    Visible = False
+  end
   object SQLConnection1: TSQLConnection
     DriverName = 'DataSnap'
     LoginPrompt = False

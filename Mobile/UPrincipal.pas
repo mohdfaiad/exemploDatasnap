@@ -76,6 +76,7 @@ type
     GRAVAR: TButton;
     Image1: TImage;
     Button1: TButton;
+    AniIndicator1: TAniIndicator;
     procedure ListBox1DblClick(Sender: TObject);
     procedure btnConectarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -185,41 +186,44 @@ fotoStream : TStream;
 b: Byte;
   mem: TBytesStream;
 begin
-//
+
   if SQLConnection1.Connected then
   begin
 
-      ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
-      {fotoStream := TmemoryStream.Create;
-      fotoStream := ser.getFotoAluno(cdsAlunoidAluno.AsInteger);
-      fotoStream.Position := 0;
-      ShowMessage(inttostr(fotoStream.Size));
-      if not(fotoStream = nil)then
-      begin
-        //Image1.Bitmap.LoadFromFile('c:\sogym\img_Aluno\'+ cdsAlunoidAluno.AsString + '.bmp');
-        Image1.Bitmap.LoadFromStream(ser.getFotoAluno(cdsAlunoidAluno.AsInteger));
-      end;// else
-      //begin
-       // Image1.Bitmap := nil;
-     // end;
-       }
-     fotoStream := ser.getFotoAluno(cdsAlunoidAluno.AsInteger);
-     mem := TBytesStream.Create;
-     while fotoStream.Read(b, 1) = 1 do
-     begin
-      mem.Write(b, 1);
-     end;
-
-      Image1.Bitmap.LoadFromStream(mem);
+    TThread.CreateAnonymousThread(
+    procedure ()
+    begin
+        AniIndicator1.visible:=true;
+        AniIndicator1.Enabled:=true;
+        ser := TServerMethods1Client.Create(SQLConnection1.DBXConnection);
+        fotoStream := ser.getFotoAluno(cdsAlunoidAluno.AsInteger);
+        mem := TBytesStream.Create;
+        //conversão de strem em Byte Stream
+        while fotoStream.Read(b, 1) = 1 do
+        begin
+          mem.Write(b, 1);
+        end;
 
 
-     mem.Free;
+        TThread.Synchronize (TThread.CurrentThread,
+        procedure ()
+        begin
+          Image1.Bitmap.LoadFromStream(mem);
+          AniIndicator1.Enabled:=false;
+          AniIndicator1.visible:=false;
+        end);
+        mem.Free;
+    end
+    ).Start;
+
 
   end;
+
 end;
 
 procedure TForm1.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
+
   if(SQLConnection1.Connected = true)then
   begin
       try
